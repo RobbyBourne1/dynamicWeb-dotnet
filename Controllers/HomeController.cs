@@ -30,9 +30,34 @@ namespace dynamicWeb_dotnet.Controllers
 
         public IActionResult PriceList()
         {
-            ViewData["Message"] = "Your contact page.";
+            var prices = new List<PriceListModel>();
 
-            return View();
+            var price1 = new PriceListModel
+            {
+                Service = "Oil Change",
+                Info = "Car Running Smooth",
+                Price = "3.50"
+            };
+
+             var price2 = new PriceListModel
+            {
+                Service = "Mow Lawn",
+                Info = "Grass so Short",
+                Price = "3.50"
+            }; 
+
+             var price3 = new PriceListModel
+            {
+                Service = "Workout Partner",
+                Info = "Body so Fit",
+                Price = "3.50"
+            }; 
+
+            prices.Add(price1);
+            prices.Add(price2);
+            prices.Add(price3);
+
+            return View(prices);
         }
 
         public IActionResult HandyManService()
