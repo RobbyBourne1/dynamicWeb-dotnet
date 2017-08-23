@@ -8,11 +8,11 @@ using dynamicWeb_dotnet.Models;
 
 namespace dynamicWeb_dotnet.Models
 {
-    public class PriceListModel
+    public class ReferenceModel
     {
-        public string Service { get; set; }
-        public string Info { get; set; }
-        public string Price { get; set; }
-         
-    } 
-} 
+        public string Message { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Website { get; set; }
+    }
+}

@@ -4,14 +4,16 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+@if (ViewData["Subscribe"] != null)
+{
+    <h3>Thank you for the comment, @ViewData["name"]</h3>
+    <p>Here is the message you added, @ViewData["message"]</p>
+}
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<form asp-controller="References" asp-action="Index" method="post">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="message" placeholder="Message">
+    <input type="email" name="email" placeholder="Email">
+    <input type="text" name="website" placeholder="Website">
+    <button type="submit">Submit</button>
+</form>

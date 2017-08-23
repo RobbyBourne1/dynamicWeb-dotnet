@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dynamicWeb_dotnet.Models;
+using System.IO;
 
 namespace dynamicWeb_dotnet.Controllers
 {
@@ -67,9 +68,33 @@ namespace dynamicWeb_dotnet.Controllers
             return View();
         }
 
-         public IActionResult References()
+        public IActionResult References()
         {
-            ViewData["Message"] = "Your contact page.";
+            return View();
+        }
+
+         [HttpPost]
+         public IActionResult References(string message, string name, string email, string website)
+        { 
+            using (var writer = new StreamWriter(System.IO.File.Open("comments.csv", FileMode.Append)))
+            {
+                writer.WriteLine($"{message}, {name}, {website}, {email}");
+            }
+            Console.WriteLine($"{message}, {name}, {website}, {email}");
+            ViewData["message"] = message;
+            ViewData["name"] = name;
+            ViewData["email"] = email;
+            ViewData["website"] = website;
+
+            var commentList = new List<ReferenceModel>();
+
+            var newComment = new ReferenceModel
+            {
+                Message = message,
+                Name = name,
+                Email = email,
+                Website = website
+            }; 
 
             return View();
         }
