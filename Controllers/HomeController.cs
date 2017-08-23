@@ -12,8 +12,28 @@ namespace dynamicWeb_dotnet.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["Message"] = "Home Message.";
+            ViewData["Article-1-Heading"] = "Hire a Professional Handyman - Call 12345";
+            ViewData["Article-1-Body"] = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.At eam doctus oportere, eam feugait delectus ne. Quo cu vulputate persecuti. Eum ut natum possim comprehensam, habeo dicta scaevola eu nec. Ea adhuc reformidans eam. Pri dolore epicuri eu, ne cum tantas fierent instructior. Pro ridens intellegam ut, sea at graecis scriptorem eloquentiam.";
+
+            ViewData["Article-2-Heading"] = "Furniture Assembly";
+            ViewData["Article-2-Body"] = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. At eam doctus oportere, eam feugait delectus ne. Quo cu vulputate persecuti. Eum ut natum possim comprehensam, habeo dicta scaevola eu nec. Ea adhuc reformidans eam.";
+
+            ViewData["Article-3-Heading"] = "Expert Plumbers";
+            ViewData["Article-3-Body"] = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. At eam doctus oportere, eam feugait delectus ne. Quo cu vulputate persecuti. Eum ut natum possim comprehensam, habeo dicta scaevola eu nec. Ea adhuc reformidans eam.";
+
+            ViewData["Article-4-Heading"] = "Interior / Exterior Painting";
+            ViewData["Article-4-Body"] = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. At eam doctus oportere, eam feugait delectus ne. Quo cu vulputate persecuti. Eum ut natum possim comprehensam, habeo dicta scaevola eu nec. Ea adhuc reformidans eam.";
+
+            return View(); 
+        }  
+
+        public IActionResult PriceList()
+        {
+            ViewData["Message"] = "Your contact page.";
+
             return View();
-        } 
+        }
 
         public IActionResult HandyManService()
         {
@@ -35,13 +55,6 @@ namespace dynamicWeb_dotnet.Controllers
 
             return View();
         } 
-
-          public IActionResult PriceList()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
 
         public IActionResult Error()
         {
