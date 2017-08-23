@@ -13,7 +13,7 @@ namespace dynamicWeb_dotnet.Controllers
         public IActionResult Index()
         {
             return View();
-        }
+        } 
 
         public IActionResult About()
         {
