@@ -15,4 +15,4 @@ namespace dynamicWeb_dotnet.Models
         public string Price { get; set; }
          
     } 
-} 
+}  

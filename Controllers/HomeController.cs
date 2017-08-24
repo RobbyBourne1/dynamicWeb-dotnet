@@ -10,7 +10,7 @@ using System.IO;
 namespace dynamicWeb_dotnet.Controllers
 {
     public class HomeController : Controller
-    {
+    { 
         public IActionResult Index()
         {
             ViewData["Message"] = "Home Message.";
@@ -27,7 +27,7 @@ namespace dynamicWeb_dotnet.Controllers
             ViewData["Article-4-Body"] = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. At eam doctus oportere, eam feugait delectus ne. Quo cu vulputate persecuti. Eum ut natum possim comprehensam, habeo dicta scaevola eu nec. Ea adhuc reformidans eam.";
 
             return View(); 
-        }  
+        }
 
         public IActionResult PriceList()
         {
@@ -67,36 +67,24 @@ namespace dynamicWeb_dotnet.Controllers
 
             return View();
         }
-
-        public IActionResult References()
+          public IActionResult References()
         {
-            return View();
+            var bob = new ReferenceModel();
+            var commentList = bob.Builder();
+
+            return View(commentList);
         }
 
-         [HttpPost]
-         public IActionResult References(string message, string name, string email, string website)
-        { 
-            using (var writer = new StreamWriter(System.IO.File.Open("comments.csv", FileMode.Append)))
+        [HttpPost]
+        public IActionResult References(string message, string name, string email, string website)
+        {
+            using (var writer = new StreamWriter(System.IO.File.Open($"comments.csv", FileMode.Append)))
             {
-                writer.WriteLine($"{message}, {name}, {website}, {email}");
+                writer.WriteLine($"'{message}',{name},{email},{website},{DateTime.Now},");
             }
-            Console.WriteLine($"{message}, {name}, {website}, {email}");
-            ViewData["message"] = message;
-            ViewData["name"] = name;
-            ViewData["email"] = email;
-            ViewData["website"] = website;
-
-            var commentList = new List<ReferenceModel>();
-
-            var newComment = new ReferenceModel
-            {
-                Message = message,
-                Name = name,
-                Email = email,
-                Website = website
-            }; 
-
-            return View();
+            var bob = new ReferenceModel();
+            var commentList = bob.Builder();
+            return View(commentList);
         }
 
         public IActionResult ContactUs()
