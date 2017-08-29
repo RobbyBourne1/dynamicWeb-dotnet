@@ -76,14 +76,14 @@ namespace dynamicWeb_dotnet.Controllers
         }
 
         [HttpPost]
-        public IActionResult References(string message, string name, string email, string website)
+        public async Task<IActionResult> References(string message, string name, string email, string website)
         {
             using (var writer = new StreamWriter(System.IO.File.Open($"comments.csv", FileMode.Append)))
             {
                 writer.WriteLine($"'{message}',{name},{email},{website},{DateTime.Now},");
             }
             var bob = new ReferenceModel();
-            var commentList = bob.Builder();
+            var commentList = await bob.Builder();
             return View(commentList);
         }
 
