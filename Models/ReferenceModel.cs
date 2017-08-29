@@ -22,8 +22,7 @@ namespace dynamicWeb_dotnet.Models
             var commentList = new List<ReferenceModel>();
 
             using (var reader = new StreamReader(System.IO.File.Open("comments.csv", FileMode.Open)))
-                while (reader.Peek() >= 0)
-                {
+            {
                     var user = reader.ReadToEnd();
                     var data = user.Split(',');
                     for (int i = 0; i < data.Length - 5; i += 5)
@@ -36,7 +35,7 @@ namespace dynamicWeb_dotnet.Models
                         newComment.PostDate = data[i + 4];
                         commentList.Add(newComment);
                     }
-                }
+            }        
             return commentList;
         }
     }
