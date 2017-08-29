@@ -17,25 +17,26 @@ namespace dynamicWeb_dotnet.Models
         public string Website { get; set; }
         public string PostDate { get; set; } = DateTime.Now.ToString();
 
-        public async Task<List<ReferenceModel>> Builder()
+        public async Task<IEnumerable<ReferenceModel>> Builder()
         {
-            var commentList = new List<ReferenceModel>();
+            
 
             using (var reader = new StreamReader(System.IO.File.Open("comments.csv", FileMode.Open)))
-                while (reader.Peek() >= 0)
-                {
-                    var user = await reader.ReadLineAsync();
-                    var data = user.Split(',');
-
-                    var newComment = new ReferenceModel();
-                    newComment.Message = data[0];
-                    newComment.Name = data[1];
-                    newComment.Email = data[2];
-                    newComment.Website = data[3];
-                    newComment.PostDate = data[4];
-                    commentList.Add(newComment);
+               {
+                    var user = await reader.ReadToEndAsync();
+                    return user.Split('\n').Where(w => !String.IsNullOrEmpty(w)).Select(s => {
+                        var _data = s.Split(',');
+                        Console.WriteLine(s);
+                        return new ReferenceModel
+                        {Message = _data[0], 
+                        Name = _data[1],
+                        Email = _data[2],
+                        Website = _data[3],
+                        PostDate = _data[4]
+                        };
+                    });
                 }
-            return commentList;
+           
         }
     }
 }
